@@ -4,14 +4,16 @@ import streamlit as st
 
 def labels_in_map(df):
     st.title("Landmarks in map")
+    st.subheader("Google Landmark Dataset v2 landmarks for countries: **Greece, France, Spain, Italy, Poland, Slovenia**")
     img_loc_count = 0
     for id in list(df.dropna()['images']):
         images = id.split(' ')
         img_loc_count += len(images)
 
-    st.header('# Landmark IDs with location: ', df.dropna().shape[0])
-    st.header('# Total images with location: ', img_loc_count)
     st.map(df)
+    st.write('Landmark IDs with location: **' + str(df.dropna().shape[0]) + '**')
+    st.write('Total images with location: **' + str(img_loc_count) + '**')
+    st.write("*Note: Outliers exist due to either a) incorrect coordinates from commons.wikimedia source url or b) landmark was misplaced in one of countries' json files.*")
 
 root = './files'
 
