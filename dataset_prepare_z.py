@@ -6,7 +6,7 @@ def labels_in_map(df):
     st.title("Labels in map")
     st.map(df)
 
-root = '/files'
+root = './files'
 
 df_train_clean = pd.read_csv(root + '/train_clean.csv') # columns: [ 'landmark_id', 'images' ] -- 81313 ids
 df_labelmap_loc_gld = pd.read_csv(root + '/train_label_to_category_loc.csv')
