@@ -17,25 +17,25 @@ def labels_in_map(df):
     st.write('Landmark IDs: **' + str(df.dropna().shape[0]) + '**')
     st.write('Total images: **' + str(img_loc_count) + '**')
 
-def polygon_country_check(row):
-    polygon_country_check.counter +=1
-    print(polygon_country_check.counter) 
-    if(row['country']=='FR'):
-        k=0
-    point = Point(row['lon'], row['lat'])
-    polygons_paths = glob.glob(root+ '/polygons/*.json')
-    for country in polygons_paths:
-        c = country.split('.json')[0].split('/')[-1]
-        country_polygons = json.load(open(country))
-        for feat in country_polygons['features']:
-            coords = feat['geometry']['coordinates']
-            for crd in coords:
-                polygon_points = [tuple(x) for x in crd]
-                polygon = Polygon(polygon_points)
-                if polygon.contains(point):
-                    return c
-    polygon_country_check.outliers += 1
-    return None
+# def polygon_country_check(row):
+#     polygon_country_check.counter +=1
+#     print(polygon_country_check.counter) 
+#     if(row['country']=='FR'):
+#         k=0
+#     point = Point(row['lon'], row['lat'])
+#     polygons_paths = glob.glob(root+ '/polygons/*.json')
+#     for country in polygons_paths:
+#         c = country.split('.json')[0].split('/')[-1]
+#         country_polygons = json.load(open(country))
+#         for feat in country_polygons['features']:
+#             coords = feat['geometry']['coordinates']
+#             for crd in coords:
+#                 polygon_points = [tuple(x) for x in crd]
+#                 polygon = Polygon(polygon_points)
+#                 if polygon.contains(point):
+#                     return c
+#     polygon_country_check.outliers += 1
+#     return None
 
 root = './files'
 
